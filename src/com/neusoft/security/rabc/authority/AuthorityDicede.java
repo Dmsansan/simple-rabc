@@ -37,6 +37,8 @@ public class AuthorityDicede {
 							arg = neusoftRabc.hasPermission(request,userResource);
 						}
 					}
+				}else {
+					arg = neusoftRabc.hasPermission(request, userResource);
 				}
 			}else {
 				JSONObject res = new JSONObject();
@@ -58,6 +60,8 @@ public class AuthorityDicede {
 							arg = neusoftRabc.hasPermission(request,userResource);
 						}
 					}
+				}else {
+					arg = neusoftRabc.hasPermission(request, userResource);
 				}
 			}
 		}

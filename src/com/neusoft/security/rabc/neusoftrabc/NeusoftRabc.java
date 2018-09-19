@@ -20,10 +20,10 @@ public class NeusoftRabc{
 	 * @param resource
 	 * @return
 	 */
-	public boolean hasPermission(HttpServletRequest request,List<HashMap<String, String>> userResouce){
+	public boolean hasPermission(HttpServletRequest request,List<HashMap<String, String>> userResource){
 		boolean hasPermission = false;
 		
-		for(HashMap<String, String> urlResource : userResouce) {
+		for(HashMap<String, String> urlResource : userResource) {
 			if(urlResource.get("url").equals("/") || urlResource.get("url").equals("/*")) {//配置所有权限访问
 				hasPermission = true;
 				break;
