@@ -20,7 +20,7 @@ public class UserDetailsInfo {
 	 * 角色 ADMIN管理员默认全部权限  USER用户配置权限 ROLE默认权限
 	 */
 	private String role;
-
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -44,6 +44,5 @@ public class UserDetailsInfo {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
+
 }

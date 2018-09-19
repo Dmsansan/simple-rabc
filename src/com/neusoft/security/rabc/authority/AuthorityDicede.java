@@ -1,4 +1,6 @@
-package com.neusoft.security.rabc.Interceptor;
+package com.neusoft.security.rabc.authority;
+
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -6,40 +8,23 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.alibaba.fastjson.JSONObject;
-import com.neusoft.security.rabc.UserResourceInterface;
 import com.neusoft.security.rabc.entity.UserDetailsInfo;
 import com.neusoft.security.rabc.neusoftrabc.NeusoftRabc;
-import com.neusoft.security.rabc.implents.NuesoftUserResource;
 
-public class RabcInterceptor implements HandlerInterceptor{
-	
-	private String[] staticUrls;
-    
-	public void setStaticUrls(String[] staticUrls) {
-
-        this.staticUrls = staticUrls;
-
-    }
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+/**
+ * 账号权限判断
+ * @author siss
+ *
+ */
+public class AuthorityDicede {
+	public boolean userAuthorityDicede(HttpServletRequest request,HttpServletResponse response,List<HashMap<String, String>> userResource,UserDetailsInfo userDetailsInfo,String[] staticUrls) throws IOException {
+		NeusoftRabc neusoftRabc = new NeusoftRabc();
 		boolean arg = true;
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = null;
-		UserResourceInterface userResourceInterface = new NuesoftUserResource();
 		
-		//用户信息
-		UserDetailsInfo userDetailsInfo = userResourceInterface.setUserInfo();
-		
-		//登录账号资源getUserResource
-		List<HashMap<String, String>> userResource = userResourceInterface.setUserResource();
-
-		NeusoftRabc neusoftRabc = new NeusoftRabc();
 		if(userDetailsInfo.getUserName() == null) {
 			if(userDetailsInfo.getRole().equals("ADMIN")) {
 				return true;
@@ -76,7 +61,7 @@ public class RabcInterceptor implements HandlerInterceptor{
 				}
 			}
 		}
-				
+		
 		if (arg == false) {
 			JSONObject res = new JSONObject();
 			res.put("STATUS", "ERROR 403");
@@ -85,21 +70,7 @@ public class RabcInterceptor implements HandlerInterceptor{
             out.append(res.toString());
             return false;
         }
-
+		
 		return arg;
 	}
-
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		// TODO Auto-generated method stub
-	}
-
 }
