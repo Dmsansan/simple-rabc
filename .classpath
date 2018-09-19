@@ -12,5 +12,8 @@
 	<classpathentry kind="lib" path="lib/spring-core-5.0.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-context-5.0.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/javaee-api-7.0.jar"/>
+	<classpathentry kind="lib" path="lib/spring-webmvc-4.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/fastjson-1.1.41.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
